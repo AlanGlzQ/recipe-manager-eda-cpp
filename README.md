@@ -7,7 +7,7 @@ La idea principal es demostrar el uso de estructuras de datos propias aplicadas 
 
 ---
 
-##  Funcionalidad
+## Funcionalidad
 
 La aplicación permite:
 
@@ -38,11 +38,11 @@ La aplicación permite:
 
 ---
 
-##  Estructuras de datos y diseño
+## Estructuras de datos y diseño
 
-Este proyecto implementa estructuras propias en lugar de usar contenedores de la STL para la parte principal del modelo:
+Este proyecto implementa estructuras propias en lugar de usar contenedores de la STL para la parte principal del modelo.
 
-###  `DoublyLinkedList<T>`
+### `DoublyLinkedList<T>`
 
 Lista genérica **doblemente ligada**, con:
 
@@ -56,7 +56,7 @@ Lista genérica **doblemente ligada**, con:
 
 Usada para manejar colecciones de recetas (`RecipeList`, por ejemplo).
 
-###  `SinglyLinkedList<T>`
+### `SinglyLinkedList<T>`
 
 Lista genérica **simplemente ligada**, con:
 
@@ -66,23 +66,22 @@ Lista genérica **simplemente ligada**, con:
 
 Usada, por ejemplo, para la lista de **ingredientes** de cada receta.
 
-###  Clases de dominio
+### Clases de dominio
 
-- `Recipe`
-  - Nombre, categoría, porciones, etc.
-  - Lista de ingredientes asociada.
-- `Ingredient`
-  - Nombre, cantidad, unidad de medida.
-- `RecipeList`
-  - Encapsula el manejo de recetas usando `DoublyLinkedList<Recipe>`.
-- `Storage`
-  - Se encarga de guardar y cargar el recetario a/desde archivo.
-- `Menu`
-  - Implementa el menú de consola (alta, baja, cambios, consultas).
+- `Recipe`  
+  Nombre, categoría, porciones, etc., y lista de ingredientes asociada.
+- `Ingredient`  
+  Nombre, cantidad, unidad de medida.
+- `RecipeList`  
+  Encapsula el manejo de recetas usando `DoublyLinkedList<Recipe>`.
+- `Storage`  
+  Se encarga de guardar y cargar el recetario a/desde archivo.
+- `Menu`  
+  Implementa el menú de consola (alta, baja, cambios, consultas).
 
 ---
 
-##  Estructura del proyecto
+## Estructura del proyecto
 
 ```text
 include/
@@ -114,3 +113,65 @@ docs/
 README.md
 LICENSE
 .gitignore
+```
+
+##  Compilación y ejecución
+- Requisitos
+
+  - Compilador C++17 (g++ o similar).
+  - Sistema operativo tipo Unix (Linux/macOS) o Windows con MinGW / WSL.
+    
+Compilar rápido (un solo comando)
+
+Si no tienes Makefile, puedes compilar algo así:
+```text
+g++ -std=c++17 src/*.cpp -I include -o recetario
+```
+Y luego ejecutar:
+```text
+./recetario    # Linux / macOS
+recetario.exe  # Windows
+```
+Si usas un IDE (Code::Blocks, CLion, VS, etc.), solo asegúrate de:
+- Añadir include/ al include path del proyecto.
+- Añadir todos los .cpp de src/ al build.
+
+
+
+##  Formato de archivo 
+El módulo Storage se encarga de:
+- Guardar las recetas e ingredientes en un archivo de texto (por ejemplo data/recetas.txt).
+- Cargar las recetas al iniciar el programa, reconstruyendo las listas.
+El formato es sencillo y legible, pensado para:
+- Ser fácil de depurar.
+- Mantener estabilidad entre ejecuciones.
+Puedes incluir un archivo de ejemplo (data/recetas_ejemplo.txt) con algunas recetas precargadas.
+
+
+
+## Objetivo académico
+Este proyecto está enfocado en:
+
+- Aplicar estructuras de datos (listas ligadas y merge sort) a un problema concreto.
+- Usar plantillas (templates) para crear estructuras genéricas.
+- Organizar el código en capas:
+  - Estructuras de datos.
+  - Lógica de negocio (recetas, ingredientes).
+  - Interfaz de usuario por consola.
+  - Persistencia en archivo.
+- Documentar el sistema con:  
+  - Diagramas de clases.
+  - Diagramas de secuencia.
+  - Casos de uso / pruebas.
+ 
+
+ 
+## Archivos ignorados
+
+En este repositorio se excluyen los siguientes elementos (ver .gitignore):
+- Archivos intermedios de compilación:
+  - *.o, *.obj, *.exe, etc.
+- Directorios generados por el IDE:
+  - .vscode/, .idea/, etc.
+- Carpetas de build:
+  - build/, cmake-build-*, out/, etc.
