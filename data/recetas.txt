@@ -1,0 +1,161 @@
+10
+Hotcakes de Avena
+Chef Papu
+Desayuno
+15
+Mezcla todo y cocina en sartén.
+10
+Avena|1|taza
+Leche|1|taza
+Huevo|1|pieza
+Banana|1|pieza
+Canela|1|cucharadita
+Polvo para hornear|1|cucharadita
+Sal|1|pizca
+Aceite vegetal|1|cucharada
+Miel|2|cucharadas
+Extracto de vainilla|1|cucharadita
+Ensalada César
+Chef Papu
+Almuerzo
+20
+Combina ingredientes y adereza al gusto.
+10
+Lechuga romana|1|unidad
+Pechuga de pollo|200|gramos
+Pan tostado|50|gramos
+Queso parmesano|30|gramos
+Aceite de oliva|2|cucharadas
+Jugo de limón|1|cucharada
+Mostaza|1|cucharadita
+Sal|1|pizca
+Pimienta|1|pizca
+Huevo|1|pieza
+Sopa de Tomate
+Chef Papu
+Almuerzo
+25
+Hierve los ingredientes y licúa hasta obtener textura suave.
+10
+Tomate|5|piezas
+Cebolla|0.5|pieza
+Ajo|2|dientes
+Aceite de oliva|2|cucharadas
+Caldo de pollo|2|tazas
+Sal|1|cucharadita
+Pimienta|0.5|cucharadita
+Azúcar|0.5|cucharadita
+Crema|0.25|taza
+Perejil|1|cucharada
+Tacos de Asada
+Chef Papu
+Almuerzo
+30
+Cocina la carne y sirve con tortillas y salsas.
+10
+Carne de res|500|gramos
+Tortillas|10|piezas
+Cilantro|0.5|taza
+Cebolla|0.5|taza
+Sal|1|cucharadita
+Pimienta|0.5|cucharadita
+Aceite vegetal|2|cucharadas
+Limón|2|piezas
+Salsa roja|3|cucharadas
+Aguacate|1|pieza
+Spaghetti Boloñesa
+Chef Papu
+Cena
+40
+Cocina la pasta y mezcla con la salsa de carne.
+10
+Spaghetti|250|gramos
+Carne molida|300|gramos
+Tomate|3|piezas
+Cebolla|1|pieza
+Ajo|2|dientes
+Aceite de oliva|2|cucharadas
+Sal|1|cucharadita
+Pimienta|0.5|cucharadita
+Orégano|1|cucharadita
+Queso parmesano|30|gramos
+Pizza Margarita
+Chef Papu
+Cena
+35
+Hornea la pizza hasta que el queso se derrita.
+10
+Masa para pizza|1|unidad
+Salsa de tomate|0.5|taza
+Queso mozzarella|200|gramos
+Aceite de oliva|1|cucharada
+Albahaca|5|hojas
+Tomate|1|pieza
+Sal|1|pizca
+Pimienta|1|pizca
+Orégano|0.5|cucharadita
+Queso parmesano|20|gramos
+Galletas de Chocolate
+Chef Papu
+Navidad
+25
+Mezcla los ingredientes, forma bolitas y hornea.
+10
+Harina|2|tazas
+Mantequilla|100|gramos
+Azúcar|0.75|taza
+Huevo|2|piezas
+Cacao en polvo|0.5|taza
+Polvo para hornear|1|cucharadita
+Sal|0.25|cucharadita
+Chispas de chocolate|0.5|taza
+Leche|2|cucharadas
+Vainilla|1|cucharadita
+Pavo al Horno
+Chef Papu
+Navidad
+180
+Hornea el pavo cubierto con mantequilla y especias.
+10
+Pavo entero|1|unidad
+Mantequilla|200|gramos
+Ajo|5|dientes
+Sal|2|cucharaditas
+Pimienta|1|cucharadita
+Hierbas finas|2|cucharadas
+Cebolla|1|pieza
+Zanahoria|2|piezas
+Apio|2|tallos
+Vino blanco|1|taza
+Ceviche de Pescado
+Chef Papu
+Almuerzo
+25
+Mezcla los ingredientes y deja marinar 20 minutos.
+10
+Pescado blanco|300|gramos
+Jugo de limón|1|taza
+Cebolla morada|0.5|taza
+Tomate|1|pieza
+Pepino|0.5|taza
+Cilantro|0.25|taza
+Sal|1|cucharadita
+Pimienta|0.5|cucharadita
+Chile serrano|1|pieza
+Aguacate|1|pieza
+Pastel de Zanahoria
+Chef Papu
+Navidad
+60
+Hornea hasta que al insertar un palillo, salga limpio.
+10
+Zanahoria rallada|2|tazas
+Harina|2|tazas
+Huevo|3|piezas
+Azúcar|1|taza
+Aceite vegetal|1|taza
+Polvo para hornear|2|cucharaditas
+Canela|1|cucharadita
+Nuez picada|0.5|taza
+Sal|0.25|cucharadita
+Vainilla|1|cucharadita
