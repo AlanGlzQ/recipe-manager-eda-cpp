@@ -105,10 +105,10 @@ src/
   main.cpp
 
 data/
-  recetas_ejemplo.txt   # archivo con recetas de muestra
+  recetas.txt   # archivo con recetas de muestra
 
 docs/
-  PROYECTO_FINAL_EDA_AGQ.pdf  # documento del proyecto (reporte, diagramas, etc.)
+  DOCUMENTACION_RECETARIO_AGQ.pdf  # documento del proyecto (reporte, diagramas, etc.)
 
 README.md
 LICENSE
@@ -137,6 +137,23 @@ Si usas un IDE (Code::Blocks, CLion, VS, etc.), solo asegúrate de:
 - Añadir todos los .cpp de src/ al build.
 
 
+## Ejemplio de uso (salida de consola)
+```text
+=== RECETARIO EDA ===
+1) Agregar receta
+2) Listar recetas
+3) Buscar receta por nombre
+4) Guardar en archivo
+5) Salir
+Opción: 1
+
+Nombre de la receta: Spaghetti Boloñesa
+Número de porciones: 4
+...
+
+Receta agregada correctamente.
+
+```
 
 ##  Formato de archivo 
 El módulo Storage se encarga de:
@@ -145,7 +162,7 @@ El módulo Storage se encarga de:
 El formato es sencillo y legible, pensado para:
 - Ser fácil de depurar.
 - Mantener estabilidad entre ejecuciones.
-Puedes incluir un archivo de ejemplo (data/recetas_ejemplo.txt) con algunas recetas precargadas.
+Puedes incluir un archivo de ejemplo (data/recetas.txt) con algunas recetas precargadas.
 
 
 
@@ -175,3 +192,11 @@ En este repositorio se excluyen los siguientes elementos (ver .gitignore):
   - .vscode/, .idea/, etc.
 - Carpetas de build:
   - build/, cmake-build-*, out/, etc.
+
+---
+
+## Documentación
+
+El reporte completo del proyecto (requerimientos, diagramas, pruebas, etc.) está disponible en:
+
+[📄 DOCUMENTACION_RECETARIO_AGQ.pdf](docs/DOCUMENTACION_RECETARIO_AGQ.pdf)
