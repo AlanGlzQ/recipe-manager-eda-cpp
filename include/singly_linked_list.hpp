@@ -26,6 +26,44 @@ public:
     ~SinglyLinkedList() {
         clear();
     }
+    // ─── Copy constructor ─────────────────────────────────────────────────────
+    SinglyLinkedList(const SinglyLinkedList& other) : head(nullptr), sz(0) {
+        SNode<T>* curr = other.head;
+        while (curr) {
+            // pushBack manteniendo el orden original
+            SNode<T>* node = new SNode<T>(curr->data);
+            if (!head) {
+                head = node;
+            } else {
+                // buscar el último
+                SNode<T>* tail = head;
+                while (tail->next) tail = tail->next;
+                tail->next = node;
+            }
+            ++sz;
+            curr = curr->next;
+        }
+    }
+    
+    // ─── Copy assignment operator ─────────────────────────────────────────────
+    SinglyLinkedList& operator=(const SinglyLinkedList& other) {
+        if (this == &other) return *this;
+        clear();
+        SNode<T>* curr = other.head;
+        while (curr) {
+            SNode<T>* node = new SNode<T>(curr->data);
+            if (!head) {
+                head = node;
+            } else {
+                SNode<T>* tail = head;
+                while (tail->next) tail = tail->next;
+                tail->next = node;
+            }
+            ++sz;
+            curr = curr->next;
+        }
+        return *this;
+    }
 
     bool empty() const { return head == nullptr; }
     std::size_t size() const { return sz; }
