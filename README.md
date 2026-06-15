@@ -1,9 +1,11 @@
 # Recetario EDA – C++ Recipe Manager
 
+![CI](https://github.com/AlanGlzQ/recipe-manager-eda-cpp/actions/workflows/ci.yml/badge.svg)
+
 Proyecto final de la materia de **Estructuras de Datos (EDA)**.  
 Es una aplicación de consola en **C++** que gestiona un recetario usando **listas ligadas genéricas** implementadas desde cero (simple y doblemente ligadas), junto con **ordenamiento por merge sort** y **persistencia en archivo**.
 
-La idea principal es demostrar el uso de estructuras de datos propias aplicadas a un caso “real”: administrar recetas e ingredientes desde un menú interactivo.
+La idea principal es demostrar el uso de estructuras de datos propias aplicadas a un caso "real": administrar recetas e ingredientes desde un menú interactivo.
 
 ---
 
@@ -50,34 +52,28 @@ Lista genérica **doblemente ligada**, con:
 - Inserción al inicio / final.
 - Búsqueda basada en predicados (`findIndexIf`).
 - Eliminación basada en predicados (`removeFirstIf`).
-- **Merge sort recursivo**:
-  - Se ordena la lista usando un comparador genérico (`std::function<bool(const T&, const T&)>`).
-  - El algoritmo trabaja directamente sobre la cadena de nodos (reacomoda enlaces).
+- **Merge sort recursivo** con comparador genérico (`std::function<bool(const T&, const T&)>`), trabajando directamente sobre los nodos.
 
-Usada para manejar colecciones de recetas (`RecipeList`, por ejemplo).
+Usada para manejar colecciones de recetas (`RecipeList`).
 
 ### `SinglyLinkedList<T>`
 
 Lista genérica **simplemente ligada**, con:
 
 - Nodos simples (solo puntero a `next`).
-- Inserción ordenada con un comparador (manteniendo la lista ordenada de forma natural).
-- `removeFirstIf`, `forEach`, acceso por índice (solo para operaciones específicas).
+- Inserción ordenada con comparador (mantiene la lista ordenada de forma natural).
+- Copy constructor y copy assignment propios para evitar shallow copy.
+- `removeFirstIf`, `forEach`, acceso por índice.
 
-Usada, por ejemplo, para la lista de **ingredientes** de cada receta.
+Usada para la lista de **ingredientes** de cada receta.
 
 ### Clases de dominio
 
-- `Recipe`  
-  Nombre, categoría, porciones, etc., y lista de ingredientes asociada.
-- `Ingredient`  
-  Nombre, cantidad, unidad de medida.
-- `RecipeList`  
-  Encapsula el manejo de recetas usando `DoublyLinkedList<Recipe>`.
-- `Storage`  
-  Se encarga de guardar y cargar el recetario a/desde archivo.
-- `Menu`  
-  Implementa el menú de consola (alta, baja, cambios, consultas).
+- `Recipe` — nombre, categoría, tiempo de preparación, procedimiento y lista de ingredientes.
+- `Ingredient` — nombre, cantidad y unidad de medida.
+- `RecipeList` — encapsula el manejo de recetas usando `DoublyLinkedList<Recipe>`.
+- `Storage` — guarda y carga el recetario desde archivo de texto.
+- `Menu` — implementa el menú de consola (alta, baja, cambios, consultas).
 
 ---
 
@@ -85,59 +81,87 @@ Usada, por ejemplo, para la lista de **ingredientes** de cada receta.
 
 ```text
 include/
-  DoublyLinkedList.h
-  SinglyLinkedList.h
-  Recipe.h
-  Ingredient.h
-  RecipeList.h
-  Storage.h
-  Menu.h
-  ...
+  doubly_linked_list.hpp
+  singly_linked_list.hpp
+  recipe.hpp
+  ingredient.hpp
+  recipe_list.hpp
+  storage.hpp
+  menu.hpp
+  category.hpp
+  constants.hpp
 
 src/
-  DoublyLinkedList.cpp
-  SinglyLinkedList.cpp
-  Recipe.cpp
-  Ingredient.cpp
-  RecipeList.cpp
-  Storage.cpp
-  Menu.cpp
   main.cpp
+  menu.cpp
+  recipe.cpp
+  storage.cpp
+
+tests/
+  test_doubly_linked_list.cpp   # 18 tests
+  test_singly_linked_list.cpp   # 14 tests
+  test_recipe_list.cpp          # 22 tests
+  test_storage.cpp              # 12 tests
 
 data/
-  recetas.txt   # archivo con recetas de muestra
+  recetas.txt
 
 docs/
-  DOCUMENTACION_RECETARIO_AGQ.pdf  # documento del proyecto (reporte, diagramas, etc.)
+  DOCUMENTACION_RECETARIO_AGQ.pdf
 
-README.md
-LICENSE
-.gitignore
+CMakeLists.txt
+.github/workflows/ci.yml
 ```
 
-##  Compilación y ejecución
-- Requisitos
+---
 
-  - Compilador C++17 (g++ o similar).
-  - Sistema operativo tipo Unix (Linux/macOS) o Windows con MinGW / WSL.
-    
-Compilar rápido (un solo comando)
+## Compilación y ejecución
 
-Si no tienes Makefile, puedes compilar algo así:
-```text
-g++ -std=c++17 src/*.cpp -I include -o recetario
+### Requisitos
+
+- CMake 3.14 o superior
+- Compilador C++17 (MSVC, GCC o Clang)
+- Conexión a internet la primera vez (CMake descarga Google Test automáticamente)
+
+### Compilar y ejecutar
+
+```bash
+cmake -B build
+cmake --build build
 ```
-Y luego ejecutar:
-```text
-./recetario    # Linux / macOS
-recetario.exe  # Windows
+
+```bash
+./build/Debug/recetario      # Windows
+./build/recetario            # Linux / macOS
 ```
-Si usas un IDE (Code::Blocks, CLion, VS, etc.), solo asegúrate de:
-- Añadir include/ al include path del proyecto.
-- Añadir todos los .cpp de src/ al build.
 
+---
 
-## Ejemplio de uso (salida de consola)
+## Tests
+
+El proyecto usa **Google Test** con **66 tests** que cubren las cuatro capas del sistema:
+
+| Suite | Tests | Qué cubre |
+|---|---|---|
+| `DoublyLinkedList` | 18 | pushBack, sort (merge sort), find, remove, edge cases |
+| `SinglyLinkedList` | 14 | insertOrdered, remove, forEach, copy |
+| `Recipe` + `RecipeList` | 22 | CRUD de recetas e ingredientes, ordenamiento, búsqueda |
+| `StorageTest` | 12 | save, load, round-trip completo, manejo de errores I/O |
+
+### Correr los tests localmente
+
+```bash
+cmake -B build
+cmake --build build
+ctest --test-dir build --output-on-failure
+```
+
+Los tests también corren automáticamente en **GitHub Actions** con cada push (ver badge arriba).
+
+---
+
+## Ejemplo de uso (salida de consola)
+
 ```text
 === RECETARIO EDA ===
 1) Agregar receta
@@ -148,50 +172,41 @@ Si usas un IDE (Code::Blocks, CLion, VS, etc.), solo asegúrate de:
 Opción: 1
 
 Nombre de la receta: Spaghetti Boloñesa
-Número de porciones: 4
+Tiempo de preparación (min): 30
 ...
 
 Receta agregada correctamente.
-
 ```
 
-##  Formato de archivo 
-El módulo Storage se encarga de:
-- Guardar las recetas e ingredientes en un archivo de texto (por ejemplo data/recetas.txt).
-- Cargar las recetas al iniciar el programa, reconstruyendo las listas.
-El formato es sencillo y legible, pensado para:
-- Ser fácil de depurar.
-- Mantener estabilidad entre ejecuciones.
-Puedes incluir un archivo de ejemplo (data/recetas.txt) con algunas recetas precargadas.
+---
 
+## Formato de archivo
 
+El módulo `Storage` guarda las recetas en texto plano (`data/recetas.txt`), con un formato sencillo y legible:
+
+```text
+<número de recetas>
+<nombre>
+<autor>
+<categoría>
+<tiempo de preparación>
+<procedimiento>
+<número de ingredientes>
+<nombre>|<cantidad>|<unidad>
+...
+```
+
+Este formato es fácil de depurar y estable entre ejecuciones.
+
+---
 
 ## Objetivo académico
-Este proyecto está enfocado en:
 
 - Aplicar estructuras de datos (listas ligadas y merge sort) a un problema concreto.
-- Usar plantillas (templates) para crear estructuras genéricas.
-- Organizar el código en capas:
-  - Estructuras de datos.
-  - Lógica de negocio (recetas, ingredientes).
-  - Interfaz de usuario por consola.
-  - Persistencia en archivo.
-- Documentar el sistema con:  
-  - Diagramas de clases.
-  - Diagramas de secuencia.
-  - Casos de uso / pruebas.
- 
-
- 
-## Archivos ignorados
-
-En este repositorio se excluyen los siguientes elementos (ver .gitignore):
-- Archivos intermedios de compilación:
-  - *.o, *.obj, *.exe, etc.
-- Directorios generados por el IDE:
-  - .vscode/, .idea/, etc.
-- Carpetas de build:
-  - build/, cmake-build-*, out/, etc.
+- Usar plantillas (templates) para crear estructuras genéricas reutilizables.
+- Organizar el código en capas: estructuras de datos, lógica de negocio, UI y persistencia.
+- Escribir tests unitarios e integración con Google Test.
+- Configurar CI/CD con GitHub Actions.
 
 ---
 
